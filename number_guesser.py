@@ -1,36 +1,25 @@
-import random
+# Write a program generating a random number between 1 and 100. 
+# The user is asked to guess the number. 
+# If the guess is not a valid number, print an error message. 
+# If the guess is too low, print "Too Low". 
+# If the guess is too high, print "Too High".
+# If the guess is correct, print "Congratulations! You guessed the number." 
+# Keep asking for guesses until the correct number is guessed.
 
-top_of_range = input("Type a number: ")
 
-if top_of_range.isdigit():
-    top_of_range = int(top_of_range)
+import random 
 
-    if top_of_range <= 0:
-        print("Enter a number larger than 0")
-        quit()
-else:
-    print("Type a number next time. ")
-    quit()
 
-random_number = random.randint(0, top_of_range)
-guesses = 0
-
+num = random.randint(1,100)
 while True:
-    guesses += 1
-    user_guess = input("Make a guess: ")
-    if user_guess.isdigit():
-        user_guess = int(user_guess)
-    else:
-        print("Type a number next time. ")
-        continue
- 
-    if user_guess == random_number:
-        print("You got it!")
-        break
-    else:
-        if user_guess > random_number:
-            print("You were too high")
+    try:
+        choice = int(input("Guess the number between 1 and 100: "))
+        if choice < num:
+            print("Too Low")
+        elif choice > num:
+            print("Too High!")
         else:
-            print("Too low!")
-
-print("You got it in", guesses, "guesses")
+            print("Congratulations! You guessed the number.")
+            break
+    except ValueError:
+        print("Enter a valid number")
