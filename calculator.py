@@ -1,10 +1,9 @@
-# Calculator which takes 
-#
-# Asks for an operator
-# Enter 1st / 2nd number string
-# print result
+# Write a function for a basic calculator that allows a user to:
 
-
+# Choose an operator (+, -, *, /).
+# Input two numbers.
+# Perform the selected operation on the two numbers and print the result rounded to three decimal places.
+# Handle invalid operator input by displaying an error message."
 
 
 def calculator():
@@ -27,7 +26,5 @@ def calculator():
     else:
         print(f"{operator} is not a valid operator ")
     
-
-
 
 calculator()

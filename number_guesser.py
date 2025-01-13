@@ -6,9 +6,7 @@
 # If the guess is correct, print "Congratulations! You guessed the number." 
 # Keep asking for guesses until the correct number is guessed.
 
-
 import random 
-
 
 num = random.randint(1,100)
 while True:

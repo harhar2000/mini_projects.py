@@ -1,3 +1,9 @@
+# Write a function assigning buyers to sellers based on their requests for specific items, given two dictionaries:
+#   one for sellers with their available items 
+#   one for buyers with their requested items. 
+
+
+
 sellers = {
   "seller1" : ["jeans", "t-shirt"],
   "seller2" : ["skirt", "dress"],

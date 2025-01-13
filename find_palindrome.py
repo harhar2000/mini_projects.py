@@ -3,7 +3,6 @@
 #   respecting letter case and all characters?
 
 
-
 def find_longest_strict_palindrome(input_string):
     longest_palindrome = ""
     
