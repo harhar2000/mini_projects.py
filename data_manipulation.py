@@ -1,5 +1,5 @@
 import os
-
+from xml.etree.ElementInclude import include
 # * A warning: the data you are using may not contain quite what you expect;
 #   cleaning data (or changing your program) might be necessary to cope with
 #   "imperfect" data
@@ -12,19 +12,14 @@ import os
 #   Returns: False
 #   Call:    does_file_exist("AirQuality.csv")
 #   Returns: True
-# Notes:
-# * Use the already imported "os" module to check whether a given filename exists
+
 def does_file_exist(file_path):
-    if os.path.exists(file_path):
-        return True
-    else:
-        return False
+    return os.path.exists(file_path)
 
 print(does_file_exist("nonsense"))
 print(does_file_exist("AirQuality.csv"))
 
-# Purpose: get the contents of a given file and return them; if the file cannot be
-# found, return a nice error message instead
+# Purpose: get the contents of a given file and return them; if the file cannot be found, return a nice error message instead
 # Example:
 #   Call: get_file_contents("AirQuality.csv")
 #   Returns:
@@ -38,12 +33,20 @@ print(does_file_exist("AirQuality.csv"))
 # * Learn how to close files you have opened
 # * Use readlines() to read the contents
 # * Use should use does_file_exist()
-def get_file_contents(filename):
-    pass
 
-# Purpose: fetch Christmas Day (25th December) air quality data rows, and if
-# boolean argument "include_header_row" is True, return the first header row
-# from the filename as well (if it is False, omit that row)
+def get_file_contents(filename):
+    if does_file_exist(filename):
+        with open(filename, "r") as file:
+            return file.read()  # Return the entire file content as a string
+    else:
+        return "Not found"
+
+
+# print(get_file_contents("AirQuality.csv"))
+# print(get_file_contents("nonsense"))
+
+# Fetch 25th December air quality data rows and if boolean argument "include_header_row" is True, return first header row (if False, omit)
+
 # Example:
 #   Call: christmas_day_air_quality("AirQuality.csv", True)
 #   Returns:
@@ -55,10 +58,32 @@ def get_file_contents(filename):
 #     25/12/2004;00.00.00;5,9;1505;-200;15,6;1168;567;525;169;1447;[...]
 #     [...]
 # Notes:
-# * should use get_file_contents() - N.B. as should any subsequent
-# functions you write, using anything previously built if and where necessary
+# should use get_file_contents() - N.B. as should any subsequent functions you write, using anything previously built if and where necessary
+
 def christmas_day_air_quality(filename, include_header_row):
-    pass
+    contents = get_file_contents(filename)
+    lines = contents.splitlines()
+    header = lines[0] if lines else ""
+
+
+
+    # contents = get_file_contents(filename)
+    # if contents == "Not found":
+    #     return "Not Found"
+    
+    # lines = contents.splitlines()
+    # header = lines[0] if lines else ""
+    # christmas_rows = [line for line in lines if line.startswith("25/12")]
+
+    # if include_header_row and header:
+    #     return f"{header}\n" + "\n".join(christmas_rows)
+    # else:
+    #     return "\n".join(christmas_rows)
+
+
+#print(christmas_day_air_quality("AirQuality.csv", True))
+#print(christmas_day_air_quality("AirQuality.csv", False))
+
 
 # Purpose: fetch Christmas Day average of "PT08.S1(CO)" values to 2 decimal places
 # Example:
