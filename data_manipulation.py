@@ -1,16 +1,5 @@
 import os
-# * A warning: the data you are using may not contain quite what you expect;
-#   cleaning data (or changing your program) might be necessary to cope with
-#   "imperfect" data
-
-# == EXERCISES ==
-
-# Purpose: return a boolean, False if the file doesn't exist, True if it does
-# Example:
-#   Call:    does_file_exist("nonsense")
-#   Returns: False
-#   Call:    does_file_exist("AirQuality.csv")
-#   Returns: True
+# Determine if a specific file exists in the relevant directory or path
 
 def does_file_exist(file_path):
     return os.path.exists(file_path)
@@ -18,20 +7,8 @@ def does_file_exist(file_path):
 print(does_file_exist("nonsense"))
 print(does_file_exist("AirQuality.csv"))
 
-# Purpose: get the contents of a given file and return them; if the file cannot be found, return a nice error message instead
-# Example:
-#   Call: get_file_contents("AirQuality.csv")
-#   Returns:
-#     Date;Time;CO(GT);PT08.S1(CO);NMHC(GT);C6H6(GT);PT08.S2(NMHC);[...]
-#     10/03/2004;18.00.00;2,6;1360;150;11,9;1046;166;1056;113;1692;1268;[...]
-#     [...]
-#   Call: get_file_contents("nonsense")
-#   Returns: "This file cannot be found!"
-# Notes:
-# * Learn how to open file as read-only
-# * Learn how to close files you have opened
-# * Use readlines() to read the contents
-# * Use should use does_file_exist()
+
+# Read the contents of a file and handle cases where the file doesn't exist
 
 def get_file_contents(filename):
     if does_file_exist(filename):
@@ -40,11 +17,11 @@ def get_file_contents(filename):
     else:
         return "Not found"
 
+print(get_file_contents("AirQuality.csv"))
+print(get_file_contents("nonsense"))
 
-# print(get_file_contents("AirQuality.csv"))
-# print(get_file_contents("nonsense"))
 
-# Fetch 25th December air quality data rows and if boolean argument "include_header_row" is True, return first header row (if False, omit)
+# Extract only the data rows for Christmas Day, with the option to include or exclude the header
 
 def christmas_day_air_quality(filename, include_header_row):
     contents = get_file_contents(filename)
@@ -60,15 +37,11 @@ def christmas_day_air_quality(filename, include_header_row):
     else:
         return "\n".join(christmas_rows)
 
+print(christmas_day_air_quality("AirQuality.csv", True))
+print(christmas_day_air_quality("AirQuality.csv", False))
 
-# print(christmas_day_air_quality("AirQuality.csv", True))
-# print(christmas_day_air_quality("AirQuality.csv", False))
 
-
-# Purpose: fetch Christmas Day average of "PT08.S1(CO)" values to 2 decimal places
-# Example:
-#   Call: christmas_day_average_air_quality("AirQuality.csv")
-#   Returns: 1439.21
+# Calculate the average value of the PT08.S1(CO) column for Christmas Day, rounded to two decimal places
 
 def christmas_day_average_air_quality(filename):
     data_rows = christmas_day_air_quality(filename, False)
@@ -98,4 +71,5 @@ def christmas_day_average_air_quality(filename):
         return round(average, 2)
     else:
         return "No valid PT08.S1(CO) data has been found for Christmas"
+    
 print(christmas_day_average_air_quality("AirQuality.csv"))
