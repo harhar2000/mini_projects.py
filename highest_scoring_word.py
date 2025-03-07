@@ -6,13 +6,17 @@ def high(x):
     max_score = 0
     highest_word = ""
     words = x.split()
+
     for word in words:
         word_score = 0
+
         for letter in word:
             letter_score = ord(letter) - 96
             word_score += letter_score
+
         if word_score > max_score:
             max_score = word_score
             highest_word = word
+            
     return highest_word
             
